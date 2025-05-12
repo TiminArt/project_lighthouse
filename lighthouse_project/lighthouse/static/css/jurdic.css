@@ -1,0 +1,123 @@
+﻿body {
+    margin-top: 50px;
+    background-color: #ffffff;
+    overflow-x: hidden; 
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.info-page {
+    display: flex;
+    max-width: 1200px;
+    padding: 0;
+}
+
+.info-page > div {
+    flex: 1;
+    max-width: 50%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-page img {
+    height: 100%;
+    object-fit: cover;
+    object-position: end;
+    width: 600px;
+    margin-top: 60px;
+}
+
+.info-page h1 {
+    color: #333;
+    margin-top: -10px;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.info-page p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.jurdic__main-text {
+    font-style: italic;
+    width: 100%;
+}
+
+
+
+
+
+
+.services-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+
+.services-title {
+    color: #2c3e50;
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.services-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #BFA315;
+}
+
+.services-list {
+    list-style-type: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.services-list li {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #e1bf18;
+    border-radius: 4px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.services-list li:hover {
+    background-color: #fff9e6;
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .services-section {
+        padding: 25px;
+    }
+    
+    .services-title {
+        font-size: 28px;
+    }
+    
+    .services-list li {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+}

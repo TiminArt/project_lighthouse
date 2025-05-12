@@ -1,0 +1,221 @@
+﻿/* Добавляем CSS-перемененты для цветов */
+:root {
+    --primary-color: #BFA315;
+    --secondary-color: #BFA315;
+    --accent-color: #ffe16b;
+    --text-color: #333;
+    --border-radius: 12px;
+    --box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+body {
+    margin-top: 50px;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.success-block {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    margin-bottom: 60px;
+    animation: fadeIn 1s ease;
+}
+
+.success__title {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px #BFA315;
+}
+
+.success__text {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.contacts-section {
+    padding: 60px 0;
+    background: var(--light-bg);
+}
+
+.office-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.office-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+.contacts-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.map-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    height: 500px;
+}
+
+.yandex-map {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.contact-info {
+    background: white;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.info-block {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.info-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-title {
+    color: var(--primary-color);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-color);
+    border-radius: 50%;
+}
+
+.info-text {
+    color: #555;
+    margin: 0;
+    font-size: 1.05em;
+    padding-left: 18px;
+}
+
+.info-text br {
+    margin-bottom: 8px;
+    display: block;
+    content: '';
+}
+
+/* Иконки для контактов */
+.info-text::before {
+    /* content: ''; */
+    display: inline-block;
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* .info-block:nth-child(3) .info-text::before {
+    content: '🚇';
+    margin-right: 8px;
+}
+
+.info-block:last-child .info-text::before {
+    content: '📞';
+    margin-right: 8px;
+} */
+
+@media (max-width: 992px) {
+    .contacts-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .map-container {
+        height: 400px;
+    }
+    
+    .contact-info {
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .success__title {
+        font-size: 2rem;
+    }
+    
+    .success__text {
+        font-size: 1rem;
+    }
+    
+    .office-title {
+        font-size: 1.6rem;
+    }
+    
+    .contact-info {
+        padding: 25px;
+    }
+    
+    .info-text {
+        font-size: 0.95em;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Дополнительные декоративные элементы */
+/* .contacts-section::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), var(--light-bg));
+    z-index: 1;
+} */

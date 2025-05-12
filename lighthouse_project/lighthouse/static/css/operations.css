@@ -1,0 +1,48 @@
+﻿.services-section {
+    padding-bottom: 20px;
+}
+.services-section h2 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #222;
+}
+.operations__text {
+    text-align: center;
+}
+.operations__link {
+    text-decoration: none;
+    color: #0775AB;
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.service-category {
+    display: flex;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.service-category h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-top: 30px;
+    width: 366px;
+}
+
+.service-list {
+    margin: 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.service-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #BFA315;
+    color: #004992;
+    font-size: 18px;
+}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Связаться с нами</h2>
+<form method="post">
+    {% csrf_token %}
+    <!-- Ваши поля формы -->
+    <button type="submit">Отправить</button>
+</form>
+{% endblock %}

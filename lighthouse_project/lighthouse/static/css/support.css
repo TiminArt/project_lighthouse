@@ -1,0 +1,272 @@
+﻿body {
+    margin-top: 50px;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    color: #333;
+}
+hr {
+    height: 2px;
+    width: 1000px; 
+    background-color: #e0d20d;
+    margin: 0 auto; 
+}
+
+.info-page {
+    display: flex;
+    max-width: 1200px;
+    padding: 0;
+}
+
+.info-page > div {
+    flex: 1;
+    max-width: 50%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-page img {
+    height: 100%;
+    box-shadow: none;
+    object-fit: cover;
+    object-position: end;
+    width: 600px;
+}
+
+.info-page h1 {
+    color: #333;
+    margin-top: -10px;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.info-page p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.support__main-text {
+    font-style: italic;
+    width: 100%;
+}
+
+.support__extra-text {
+    margin-top: 40px;
+    text-align: center;
+    color: #666;
+    font-family: italic;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px #BFA315 solid;
+    font-size: 20px;
+}
+
+.support__container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.support__links {
+    color: #0775AB;
+}
+
+.content {
+    flex: 1;
+    margin-left: 90px;
+    margin-top: -1220px;
+}
+.stripes {
+    margin-top: -18px;
+    margin-left: -5px;
+    max-height: 1550px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #222;
+}
+h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.card {
+    /* background-color: white; */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid #BFA315;
+    background-color: #BFA315;
+    color: rgb(255, 255, 255);
+}
+
+.card-body {
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.card-body p {
+    margin: 0 0 15px 0;
+}
+
+.card-body p:last-child {
+    margin-bottom: 0;
+}
+.services-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+.services-title {
+    color: #2c3e50;
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.services-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #BFA315;
+}
+.services-text {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 30px;
+}
+.services-list {
+    list-style-type: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.services-list li {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #e1bf18;
+    border-radius: 4px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.services-list li:hover {
+    background-color: #fff9e6;
+    transform: translateX(5px);
+}
+
+
+
+.also-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 50px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.also-header {
+    background-color: #e1bf18;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.also-header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.also-header h2 {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.also-list {
+    background-color: #333;
+    color: white;
+    padding: 25px;
+    list-style-type: none;
+    margin: 0;
+}
+
+.also-list li {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #424242;
+    border-left: 4px solid #e1bf18;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.also-list li:last-child {
+    margin-bottom: 0;
+}
+
+.also-list li:hover {
+    background-color: #555;
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .services-section {
+        padding: 25px;
+    }
+    
+    .services-title {
+        font-size: 28px;
+    }
+    
+    .services-list li {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+    .also-header {
+        padding: 15px;
+    }
+    
+    .also-header h1 {
+        font-size: 24px;
+    }
+    
+    .also-header h2 {
+        font-size: 18px;
+    }
+    
+    .also-list {
+        padding: 15px;
+    }
+    
+    .also-list li {
+        padding: 12px;
+        font-size: 15px;
+    }
+}

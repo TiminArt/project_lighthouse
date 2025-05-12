@@ -1,0 +1,43 @@
+﻿{% extends 'base/base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}КОММЕРЧЕСКАЯ НЕДВИЖИМОСТЬ | МАЯК{% endblock %}</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/commercial.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    {% endblock %}
+</head>
+{% block content %}
+<body>
+    <section class="info-page">
+        <div class="info-page__commercial">
+            <h1>КОММЕРЧЕСКАЯ НЕДВИЖИМОСТЬ</h1>
+            <p class="commercial__main-text">Продажа и покупка коммерческой недвижимости требует глубокой подготовки, знаний рынка и юридических тонкостей в этой сфере, знание особенностей каждого сегмента</p>
+        </div> 
+        <img src="{% static 'img/commercial-img.png' %}" alt="Межрег. сделки">
+    </section>
+    <section class="services-section">
+        <h2 class="services-title">Наши услуги</h2>
+        <ul class="services-list">
+            <li>Продажа/покупка объектов коммерческой недвижимости: офисных помещений, торговых площадей, складских помещений, объектов сферы услуг</li>
+            <li>Оценка объектов коммерческой недвижимости</li>
+            <li>Оформление документов и их юридическая проверка</li>
+            <li>Сопровождение сделки от начала до конца</li>
+            <li>Страхование прав собственности</li>
+        </ul>
+    </section>
+    <section class="services-section">
+        <h2 class="services-title">Мы работаем с широким спектром объектов коммерческой недвижимости</h2>
+        <ul class="services-list">
+            <li>Помещения свободного назначения (ПСН)-объекты под любой вид бизнеса (салоны, шоурумы, медцентры и пр.)</li>
+            <li>Офисные помещения – (как небольшие помещения, так и целые этажи в офисных и бизнес центрах)</li>
+            <li>Торговые помещения (павильоны, магазины и т.д)</li>
+            <li>Земельные участки под коммерческое строительство (заправки, здания, ТЦ)</li>
+            <li>Готовый арендный бизнес (объекты с действующими арендаторами)</li>
+            <li>Склады и производственные объекты</li>
+        </ul>
+    </section>
+    <p class="commercial__footer-text">Учитываем особенности назначения каждого объекта: трафик, витринность, локацию, подъездные пути, инженерные сети и многое другое.</p>
+{% endblock %}

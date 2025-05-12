@@ -1,0 +1,164 @@
+{% extends 'base/base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}МАЯК - Правовое агентство недвижимости{% endblock %}</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    {% endblock %}
+</head>
+{% block content %}
+<div class="services-page">
+    <section class="hero-section">
+        <img src="{% static 'img/services-bg.png' %}" alt="Фон" class="bg-image">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1>МАЯК</h1>
+            <p class="subtitle">Правовое агентство недвижимости</p>
+            <a href="#next-section" class="hero-arrow">
+                <img src="{% static 'img/arrow.svg' %}" alt="Scroll down">
+            </a>
+        </div>
+    </section>
+    <section class="services-section">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-category">
+                    <h3>Основные операции с недвижимостью</h3>
+                    <ul class="service-list">
+                        <li><a href="{% url 'ipoteka' %}" class="operations__link">Ипотека</a></li>
+                        <li><a href="{% url 'arenda' %}" class="operations__link">Аренда</a></li>
+                    </ul> 
+                    <ul class="service-list">
+                        <li><a href="{% url 'primary' %}" class="operations__link">Новостройки (первичная недвижимость)</a></li>
+                        <li><a href="{% url 'secondary' %}" class="operations__link">Вторичная недвижимость</a></li>
+                        <li><a href="{% url 'suburban' %}" class="operations__link">Загородная недвижимость</a></li>
+                        <li><a href="{% url 'commercial' %}" class="operations__link">Коммерческая недвижимость</a></li>
+                        <!-- <li><a href="/">Элитная недвижимость</a></li> -->
+                    </ul>
+                </div>
+                <div class="divider"></div>
+                <div class="service-category">
+                    <h3>Другие услуги</h3>
+                    <ul class="service-list">
+                        <li><a href="{% url 'support' %}" class="operations__link">Юридическое сопровождение сделок</a></li>
+                        <li><a href="{% url 'juridic' %}" class="operations__link">Юридические услуги</a></li>
+                        <li><a href="{% url 'regional' %}" class="operations__link">Межрегиональные сделки</a></li>
+                        <!-- <li>Работа с сертификатами / субсидиями</li> -->
+                        <!-- <li>Страхование собственности</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="free-services">
+        <div class="container">
+            <h2>Бесплатно</h2>
+            <div class="free-service-item">
+                <p class="free-service-text">Первичная консультация - помощь в подборе недвижимости и ответы на ваши вопросы</p>
+                <p class="free-service-text">Покупка новостроек по всей России</p>
+                <p class="free-service-text">Сдача в аренду вашей квартиры, комнаты, загородного дома</p>
+            </div>
+        </div>
+    </section>
+    <section class="additional-services">
+        <div class="container">
+            <h2>Можно заказать отдельно</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <p>Сопровождение сделки покупки/продажи объекта недвижимости (квартиры, комнаты, доли, дома с земельным участком и т.д.)</p>
+                </div>
+                <div class="checklist-item">
+                    <p>Правовое (юридическое) заключение по объекту недвижимости и собственнику</p>
+                </div>
+                <div class="checklist-item">
+                    <p>Договор купли-продажи объекта недвижимости в простой письменной форме (бонус - акт приема передачи)</p>
+                </div>
+                <div class="checklist-item">
+                    <p>Пошаговую инструкцию предстоящей сделки купли-продажи объекта недвижимости с рекомендациями и списком необходимых документов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="partners-section">
+        <div class="container">
+            <h2 class="section-title">Наши партнёры</h2>
+            <div class="partners-category">
+                <div class="carousel-container">
+                    <div class="partners-carousel">
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/dom-click.webp' %}" alt="Дом клик">
+                            <span>Дом клик</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/m2.png' %}" alt="М2 – метр квадратный">
+                            <span>М² – метр квадратный</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="partners-subtitle">Банки</h3>
+            <div class="partners-category">
+                <div class="carousel-container">
+                    <div class="partners-carousel">
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/domrf.jpg' %}" alt="ДОМ РФ">
+                            <span>ДОМ РФ</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/sber.webp' %}" alt="Сбер">
+                            <span>Сбер</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/vtb.jpg' %}" alt="ВТБ">
+                            <span>ВТБ</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/alfa-bank.png' %}" alt="АльфаБанк">
+                            <span>АльфаБанк</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/spb.jpeg' %}" alt="СПБ">
+                            <span>СПБ Банк</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/rosselhoz.jpg' %}" alt="Россельхозбанк">
+                            <span>Россельхозбанк</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/sovkom.png' %}" alt="Совкомбанк">
+                            <span>Совкомбанк</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="partners-subtitle">Страховые компании</h3>
+            <div class="partners-category">
+                <div class="carousel-container">
+                    <div class="partners-carousel">
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/alfa-strah.webp' %}" alt="Альфастрахование">
+                            <span>Альфастрахование</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/reso.webp' %}" alt="Ресо">
+                            <span>Ресо</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/vsk.jpg' %}" alt="ВСК">
+                            <span>ВСК</span>
+                        </div>
+                        <div class="partner-item">
+                            <img src="{% static 'img/partners/rosgorstrah.jpg' %}" alt="Росгорстрах">
+                            <span>Росгорстрах</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

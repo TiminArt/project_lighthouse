@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+<footer class="footer">
+    <div class="divider"></div>
+    <div class="footer-container">
+        <div class="footer-logo-section">
+            <a href="/" class="footer-logo-link">
+                <img src="{% static 'img/logo.svg' %}" alt="МАЯК" class="footer-logo">
+            </a>
+            
+            <div class="footer-contacts">
+                <div class="contact-phone">+7 (926) 464-89-34</div>
+                <div class="contact-phone">+7 (903) 163-02-98</div>
+                <div class="contact-email">mayak@yandex.ru</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="working-hours">Режим работы: пн-вск, 10:00-19:00</div>
+            <div class="footer-links">
+                <a href="#" class="privacy-link">Политика конфиденциальности</a>
+                <a href="#" class="data-link">Обработка персональных данных</a>
+            </div>
+            <div class="copyright">© ПАН «Маяк». Все права защищены. 2020-2025.</div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,67 @@
+﻿{% extends 'base/base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}О нас | МАЯК{% endblock %}</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    {% endblock %}
+</head>
+{% block content %}
+<body>
+
+<section class="contacts-section">
+    <div class="container">
+        <h2 class="section-title">Как нас найти</h2>
+        
+        <div class="contacts-wrapper">
+            <div class="map-container">
+                <iframe 
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A0b13d097e3a1d1d5e3d6c3c3d9a8c5e67d5a6a3a3d5d9a8c5e67d5a6a3a3d5d&amp;source=constructor" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0"
+                    class="yandex-map"
+                ></iframe>
+            </div>
+
+            <div class="contact-info">
+                <div class="info-block">
+                    <h3 class="info-title">Адрес</h3>
+                    <p class="info-text">
+                        г. Щёлково-3, <br>
+                        ул. Радиоцентра № 5, 16, микрорайон Щёлково-3
+                    </p>
+                </div>
+
+                <div class="info-block">
+                    <h3 class="info-title">Часы работы</h3>
+                    <p class="info-text">
+                        Пн-Вс: 10:00 - 19:00
+                    </p>
+                </div>
+
+                <div class="info-block">
+                    <h3 class="info-title">Как добраться</h3>
+                    <p class="info-text">
+                        🚇 Станция электричек: «Чкаловская»<br>
+                        🚌 Автобусы: 1, 50, 378, 321, 371, 26...<br>
+                        🅿️ Парковка у офиса
+                    </p>
+                </div>
+
+                <div class="info-block">
+                    <h3 class="info-title">Контакты</h3>
+                    <p class="info-text">
+                        📞 +7 (926) 464-89-34<br>
+                        📞 +7 (903) 163-02-98<br>
+                        ✉️ Panmayak2020@yandex.ru
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

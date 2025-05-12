@@ -1,0 +1,41 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="overlay"></div>
+<header class="header">
+    <div class="header-container">
+        <a href="/" class="logo">
+            <img src="{% static 'img/logo.svg' %}" alt="Logo" class="header__logo">
+        </a>
+        <nav class="navigation">
+            <ul>
+                <li class="nav-links"><a href="{% url 'about_us' %}">О нас</a></li>
+                <li class="nav-links"><a href="{% url 'operations' %}">Все операции с недвижимостью</a></li>
+                <li class="nav-links"><a href="{% url 'support' %}">Сопровождение сделок</a></li>
+                <li class="nav-links"><a href="{% url 'ipoteka' %}">Ипотека</a></li>
+                <li class="nav-links"><a href="{% url 'arenda' %}">Аренда</a></li>
+                <li class="nav-links"><a href="{% url 'juridic' %}">Юридические услуги</a></li>
+            </ul>
+        </nav>
+        <button class="burger-btn" aria-label="Меню">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button> 
+        <button class="request-btn">Оставить заявку</button>  
+    </div>
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Закрыть">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18" stroke="#dac000" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6 6L18 18" stroke="#dac000" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            {% include 'base/components/feedback.html' %}
+        </div> 
+    </div>
+<script src="{% static 'js/header.js' %}"></script>
+<script src="{% static 'js/feedback.js' %}"></script>
+</header>
