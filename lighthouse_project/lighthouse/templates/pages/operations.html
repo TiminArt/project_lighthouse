@@ -1,0 +1,48 @@
+﻿{% extends 'base/base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}УСЛУГИ | МАЯК{% endblock %}</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/operations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    {% endblock %}
+</head>
+{% block content %}
+<body>
+    <section class="services-section">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <p class="operations__text">Наше агентство предлагает большой спектр риелторских и юридических услуг, связанных с недвижимостью. Мы работаем для частных клиентов, инвесторов и бизнеса, обеспечивая надежность, прозрачность и максимальную выгоду от каждой сделки</p>
+            <div class="services-grid">
+                <div class="service-category">
+                    <h3>Основные операции с недвижимостью</h3>
+                    <ul class="service-list">
+                        <li><a href="{% url 'ipoteka' %}" class="operations__link">Ипотека</a></li>
+                        <li><a href="{% url 'arenda' %}" class="operations__link">Аренда</a></li>
+                    </ul> 
+                    <ul class="service-list">
+                        <li><a href="{% url 'primary' %}" class="operations__link">Новостройки (первичная недвижимость)</a></li>
+                        <li><a href="{% url 'secondary' %}" class="operations__link">Вторичная недвижимость</a></li>
+                        <li><a href="{% url 'suburban' %}" class="operations__link">Загородная недвижимость</a></li>
+                        <li><a href="{% url 'commercial' %}" class="operations__link">Коммерческая недвижимость</a></li>
+                        <!-- <li><a href="/">Элитная недвижимость</a></li> -->
+                    </ul>
+                </div>
+                <div class="divider"></div>
+                <div class="service-category">
+                    <h3>Другие услуги</h3>
+                    <ul class="service-list">
+                        <li><a href="{% url 'support' %}" class="operations__link">Юридическое сопровождение сделок</a></li>
+                        <li><a href="{% url 'juridic' %}" class="operations__link">Юридические услуги</a></li>
+                        <li><a href="{% url 'regional' %}" class="operations__link">Межрегиональные сделки</a></li>
+                        <!-- <li>Работа с сертификатами / субсидиями</li> -->
+                        <!-- <li>Страхование собственности</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+{% endblock %}

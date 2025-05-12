@@ -1,0 +1,31 @@
+﻿{% extends 'base/base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ЮРИДИЧЕСКИЕ УСЛУГИ | МАЯК{% endblock %}</title>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/jurdic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    {% endblock %}
+</head>
+{% block content %}
+<body>
+    <section class="info-page">
+        <div>
+            <h1>ЮРИДИЧЕСКИЕ УСЛУГИ</h1>
+            <p class="jurdic__main-text">Наши агенты предоставляют услуги по сопровождению сделок с недвижимостью. Команда наших экспертов поможет: продавцам — юридически грамотно оформить сделку, минимизировать риски и защитить свои интересы, а покупателям — проверить чистоту сделки, права собственности и избежать скрытых обременений.</p>
+            <p><br>Мы обеспечим надёжность и безопасность вашей сделки, избавив вас от юридических рисков и непредвиденных проблем. Доверьте сопровождение профессионалам — ваша недвижимость в надёжных руках!</p>
+        </div> 
+        <img src="{% static 'img/jurdic-img.png' %}" alt="Юр. услуги">
+    </section>
+    <section class="services-section">
+        <h2 class="services-title">Наши услуги</h2>
+        <ul class="services-list">
+            <li>Консультации по вопросам недвижимости</li>
+            <li>Юридическое сопровождение сделок</li>
+            <li>Составление договоров в простой письменной форме</li>
+            <li>Составление письменного юридического заключения по предоставленным документам</li>
+        </ul>
+    </section>
+{% endblock %}

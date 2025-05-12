@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="property-detail">
+    <h1>{{ property.title }}</h1>
+    
+    <div class="property-images">
+        <img src="{{ property.main_photo.url }}" alt="{{ property.title }}" class="main-photo">
+    </div>
+    
+    <div class="property-info">
+        <p><strong>Цена:</strong> {{ property.price }} ₽</p>
+        <p><strong>Адрес:</strong> {{ property.address }}</p>
+        <p><strong>Город:</strong> {{ property.city }}</p>
+        <p><strong>Тип:</strong> {{ property.property_type.name }}</p>
+        <p><strong>Спальни:</strong> {{ property.bedrooms }}</p>
+        <p><strong>Ванные:</strong> {{ property.bathrooms }}</p>
+        <p><strong>Площадь:</strong> {{ property.sqft }} кв.футов</p>
+        
+        <h3>Описание</h3>
+        <p>{{ property.description }}</p>
+    </div>
+</div>
+
+<style>
+    .property-detail {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .property-images {
+        margin-bottom: 20px;
+    }
+    
+    .main-photo {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    .property-info {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}

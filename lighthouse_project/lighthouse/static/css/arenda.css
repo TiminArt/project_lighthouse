@@ -1,0 +1,213 @@
+﻿body {
+    margin-top: 50px;
+    background-color: #ffffff;
+    overflow-x: hidden; 
+}
+
+.info-page {
+    display: flex;
+    max-width: 1200px;
+    padding: 0;
+}
+
+.info-page > div {
+    flex: 1;
+    max-width: 50%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-page img {
+    height: 100%;
+    box-shadow: none;
+    object-fit: cover;
+    object-position: end;
+    width: 600px;
+}
+
+.info-page h1 {
+    color: #333;
+    margin-top: -10px;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.info-page p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.arenda__main-text {
+    font-style: italic;
+    width: 100%;
+}
+
+/* .request-btn {
+    background-color: #BFA315;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* margin-top: 20px; */
+    /* width: fit-content; */
+/* } */
+
+/* .request-btn:hover { */
+    /* background-color: #b3a600; */
+/* } */ 
+
+/* Секция how-we-work с желтой полосой сверху */
+.how-we-work {
+    margin-top: 60px;
+    padding: 60px 20px;
+    background-color: #505050;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    min-height: 600px;
+    border-top: 2px solid #BFA315; 
+    border-bottom: 2px solid #BFA315; 
+}
+
+.how-we-work h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 50px;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.step {
+    width: 45%;
+    margin-bottom: 20px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(196, 196, 196, 0.788);
+}
+
+.step__num {
+    font-family: 'Comic Sans MS', cursive;
+    color: #BFA315;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.arenda__list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.arenda__list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 16px;
+}
+
+.arenda__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background-color: #BFA315;
+    border-radius: 50%;
+}
+
+.step h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.step__text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+
+}
+.arenda__footer-text {
+    margin-top: 40px;
+    text-align: center;
+    color: #666;
+    font-family: italic;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px #BFA315 solid;
+    font-size: 20px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .info-page {
+        flex-direction: column;
+        min-height: auto;
+        margin: 20px auto;
+    }
+    
+    .info-page > div {
+        max-width: 100%;
+        padding: 40px 20px;
+        order: 1;
+    }
+    
+    .info-page img {
+        width: 100%;
+        height: 300px;
+        order: 2;
+    }
+    
+    .how-we-work {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+    
+    .step {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .info-page h1 {
+        font-size: 28px;
+    }
+    
+    .info-page p, .arenda__main-text {
+        font-size: 16px;
+    }
+    
+    .request-btn {
+        width: 100%;
+    }
+}
+
+/* Дополнительные желтые разделители */
+.section-divider {
+    height: 4px;
+    background-color: #BFA315;
+    width: 100%;
+    margin: 40px 0;
+}
