@@ -1,24 +1,166 @@
 {% extends "base/base.html" %}
+{% load static %}
 
 {% block content %}
-<h1 class="mb-4">Наши объекты</h1>
-
-<div class="row">
-    {% for property in properties %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <!-- Используем только main_photo -->
-            <img src="{{ property.main_photo.url }}" class="card-img-top" alt="{{ property.title }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ property.title }}</h5>
-                <p class="text-success fw-bold">{{ property.price }} ₽</p>
-                <p>{{ property.address }}, {{ property.city }}</p>
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'property_detail' property.id %}" class="btn btn-primary">Подробнее</a>
-            </div>
+<div class="container py-5">
+    <h1 class="mb-4">Наши объекты недвижимости</h1>
+    
+    <!-- Фильтры -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form id="filter-form" class="row g-3">
+                <div class="col-md-3">
+                    <select name="city" class="form-select">
+                        <option value="">Все города</option>
+                        {% for city in cities %}
+                        <option value="{{ city }}" {% if request.GET.city == city %}selected{% endif %}>{{ city }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="type" class="form-select">
+                        <option value="">Все типы</option>
+                        {% for type in property_types %}
+                        <option value="{{ type.id }}" {% if request.GET.type == type.id|stringformat:"s" %}selected{% endif %}>{{ type.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="status" class="form-select">
+                        <option value="">Все статусы</option>
+                        <option value="sale" {% if request.GET.status == 'sale' %}selected{% endif %}>На продажу</option>
+                        <option value="rent" {% if request.GET.status == 'rent' %}selected{% endif %}>Аренда</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary w-100" style="background-color: #BFA315; border-color: #BFA315;">Применить</button>
+                </div>
+            </form>
         </div>
     </div>
-    {% endfor %}
+
+    <!-- Результаты -->
+    <div id="property-results">
+        <div class="row">
+            {% for property in page_obj %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <!-- Бейдж статуса и featured -->
+                    <div class="position-absolute top-0 start-0 m-2">
+                        {% if property.is_featured %}
+                        <span class="badge" style="background-color: #BFA315; color: #000;">Рекомендуем</span>
+                        {% endif %}
+                    </div>
+                    <div class="position-absolute top-0 end-0 m-2">
+                        <span class="badge" style="background-color: #BFA315;">
+                            {{ property.get_status_display }}
+                        </span>
+                    </div>
+                    <img src="{{ property.main_photo.url }}" class="card-img-top property-thumbnail" alt="{{ property.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ property.title }}</h5>
+                        <p class="fw-bold" style="color: #BFA315;">{{ property.price|floatformat:"0" }} ₽</p>
+                        <p class="text-muted">
+                            <i class="fas fa-map-marker-alt"></i> {{ property.address }}, {{ property.city }}
+                        </p>
+                        <div class="d-flex justify-content-between text-muted small">
+                            <span><i class="fas fa-door-open"></i> Комнат: {{ property.rooms }}</span>
+                            <span><i class="fas fa-bath"></i>кол-во туалетов: {{ property.bathrooms }} </span>
+                            <span><i class="fas fa-ruler-combined"></i> {{ property.sqft }} кв.м</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{{ property.get_absolute_url }}" class="btn btn-outline-primary w-100 btn-property-detail">
+                            Подробнее <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">Объекты по вашему запросу не найдены. Попробуйте изменить параметры фильтрации.</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+<!-- Пагинация -->
+{% if page_obj.has_other_pages %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center mt-4">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" style="color: #BFA315;">
+                &laquo;
+            </a>
+        </li>
+        {% endif %}
+        
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item active"><span class="page-link" style="background-color: #BFA315; border-color: #BFA315;">{{ num }}</span></li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" style="color: #BFA315;">
+                    {{ num }}
+                </a>
+            </li>
+            {% endif %}
+        {% endfor %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" style="color: #BFA315;">
+                &raquo;
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+<style>
+    .btn-primary {
+        background-color: #BFA315;
+        border-color: #BFA315;
+    }
+    .btn-primary:hover {
+        background-color: #A68D12;
+        border-color: #A68D12;
+    }
+    .btn-outline-primary {
+        color: #BFA315;
+        border-color: #BFA315;
+    }
+    .btn-outline-primary:hover {
+        background-color: #BFA315;
+        color: #fff !important; 
+    }
+    .page-link {
+        color: #BFA315;
+    }
+    .page-item.active .page-link {
+        background-color: #BFA315;
+        border-color: #BFA315;
+    }
+    .text-success {
+        color: #BFA315 !important;
+    }
+    .btn-property-detail {
+        border-color: #BFA315 !important;
+        color: #BFA315 !important;
+        background-color: transparent !important;
+        transition: all 0.3s ease;
+    }
+
+    .btn-property-detail:hover {
+        background-color: #BFA315 !important;
+        color: #ffffff !important;
+    }
+</style>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/property_filter.js' %}"></script>
 {% endblock %}

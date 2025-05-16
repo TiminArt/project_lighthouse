@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,16 +29,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",  # Для allauth
+    "django.contrib.sites",  
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "crispy_forms",
     "crispy_bootstrap4",
-    "properties",
     "accounts",
     "contacts",
-    # 'feedback',
+    'properties.apps.PropertiesConfig',
+    'ai',
+    'chat',
 ]
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -135,6 +137,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
@@ -148,10 +151,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your-email@yandex.ru'
-EMAIL_HOST_PASSWORD = 'your-password'
-DEFAULT_FROM_EMAIL = 'your-email@yandex.ru'
+EMAIL_HOST_USER = 'timin.tema@yandex.ru'
+EMAIL_HOST_PASSWORD = '123456789'
 ADMIN_EMAIL = 'admin-email@example.com'
+SALES_EMAIL = 'sales@yourdomain.com'
+DEFAULT_FROM_EMAIL = 'noreply@yourdomain.com'
+
+
+
 
 LOGGING = {
     'version': 1,
@@ -171,3 +178,9 @@ LOGGING = {
         },
     },
 }
+
+# ИИ
+load_dotenv()
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")

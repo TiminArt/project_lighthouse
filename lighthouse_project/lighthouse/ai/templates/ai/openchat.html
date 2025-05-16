@@ -1,0 +1,19 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}OpenAI | Маяк{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>LLaMA / Mistral</h2>
+    <form method="post">{% csrf_token %}
+        <textarea name="message" class="form-control" rows="3"></textarea>
+        <button class="btn btn-primary mt-2">Отправить</button>
+    </form>
+    <div class="mt-4">
+        {% for msg in messages %}
+            <p><strong>{{ msg.role }}:</strong> {{ msg.content }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

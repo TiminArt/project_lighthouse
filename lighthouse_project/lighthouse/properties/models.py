@@ -1,10 +1,13 @@
-from django.db import models
+from django.db import models 
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
+from django.utils.text import slugify
+
 
 class PropertyType(models.Model):
-    """Модель типа недвижимости"""
     name = models.CharField(max_length=100, verbose_name="Название типа")
+    icon = models.CharField(max_length=50, blank=True, help_text="Иконка Font Awesome")
 
     class Meta:
         verbose_name = "Тип недвижимости"
@@ -14,52 +17,35 @@ class PropertyType(models.Model):
     def __str__(self):
         return self.name
 
+
 class Property(models.Model):
-    """Модель объекта недвижимости"""
     PROPERTY_STATUS_CHOICES = [
         ('sale', 'На продажу'),
         ('rent', 'Аренда'),
     ]
 
-    # Основные поля
     title = models.CharField(max_length=200, verbose_name="Заголовок")
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
     description = models.TextField(verbose_name="Описание")
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Цена")
-    bedrooms = models.PositiveIntegerField(verbose_name="Количество спален")
+    rooms = models.PositiveIntegerField(verbose_name="Количество комнат", default=0)
+    bedrooms = models.PositiveIntegerField(default=0, verbose_name="Количество спален")
     bathrooms = models.PositiveIntegerField(verbose_name="Количество ванных")
-    sqft = models.PositiveIntegerField(verbose_name="Площадь (кв. футы)")
+    sqft = models.PositiveIntegerField(verbose_name="Площадь (кв. м)")
+    plot_area = models.PositiveIntegerField(verbose_name="Площадь участка (соток)", blank=True, null=True)
+    views = models.PositiveIntegerField(default=0, editable=False)
+    floors = models.PositiveIntegerField(default=1, verbose_name="Количество этажей")
+    has_balcony = models.BooleanField(default=False, verbose_name="Балкон")
 
-    # Адресные данные
     address = models.CharField(max_length=255, verbose_name="Адрес")
     city = models.CharField(max_length=100, verbose_name="Город")
 
-    # Связи и статусы
-    status = models.CharField(
-        max_length=10,
-        choices=PROPERTY_STATUS_CHOICES,
-        default='sale',
-        verbose_name="Статус"
-    )
-    property_type = models.ForeignKey(
-        PropertyType,
-        on_delete=models.PROTECT,
-        related_name='properties',
-        verbose_name="Тип объекта"
-    )
-    agent = models.ForeignKey(
-        User,
-        on_delete=models.PROTECT,
-        related_name='properties',
-        verbose_name="Агент"
-    )
+    status = models.CharField(max_length=10, choices=PROPERTY_STATUS_CHOICES, default='sale', verbose_name="Статус")
+    property_type = models.ForeignKey(PropertyType, on_delete=models.PROTECT, related_name='properties', verbose_name="Тип объекта")
+    agent = models.ForeignKey(User, on_delete=models.PROTECT, related_name='properties', verbose_name="Агент")
 
-    # Изображения
-    main_photo = models.ImageField(upload_to='properties/')
-    photo_1 = models.ImageField(upload_to='properties/', blank=True, null=True)
-    photo_2 = models.ImageField(upload_to='properties/', blank=True, null=True)
-    photo_3 = models.ImageField(upload_to='properties/', blank=True, null=True)
+    main_photo = models.ImageField(upload_to='properties/', verbose_name="Главное фото")
 
-    # Флаги и даты
     is_featured = models.BooleanField(default=False, verbose_name="Рекомендуемый")
     created_at = models.DateTimeField(default=timezone.now, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
@@ -67,12 +53,36 @@ class Property(models.Model):
     class Meta:
         verbose_name = "Объект недвижимости"
         verbose_name_plural = "Объекты недвижимости"
-        ordering = ['-created_at']
+        ordering = ['-is_featured', '-created_at']
         indexes = [
             models.Index(fields=['-created_at']),
             models.Index(fields=['price']),
             models.Index(fields=['city']),
+            models.Index(fields=['status']),
         ]
 
     def __str__(self):
         return f"{self.title} - {self.city}"
+
+    def get_absolute_url(self):
+        return reverse('property_detail', kwargs={'pk': self.pk})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.title}-{self.city}")
+        super().save(*args, **kwargs)
+
+    def get_all_photos(self):
+        return self.propertyimage_set.all()
+
+
+class PropertyImage(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='properties/gallery/')
+
+    class Meta:
+        verbose_name = "Доп. фото"
+        verbose_name_plural = "Доп. фотографии"
+
+    def __str__(self):
+        return f"Фото для {self.property.title}"

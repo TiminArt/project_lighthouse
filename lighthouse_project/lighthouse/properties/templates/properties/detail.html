@@ -1,48 +1,223 @@
-{% extends "base.html" %}
+
+{% extends "base/base.html" %}
 
 {% block content %}
-<div class="property-detail">
-    <h1>{{ property.title }}</h1>
-    
-    <div class="property-images">
-        <img src="{{ property.main_photo.url }}" alt="{{ property.title }}" class="main-photo">
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Заголовок и статус -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1>{{ property.title }}</h1>
+                <span class="badge {% if property.status == 'sale' %}bg-success{% else %}bg-primary{% endif %} fs-6" style="background-color: #BFA315 !important;">
+                    {{ property.get_status_display }}
+                </span>
+            </div>
+
+            <!-- Галлерея -->
+             <div class="property-gallery mb-4">
+                <div class="row g-2">
+                    <!-- Главное фото -->
+                    <div class="col-md-12">
+                        <img src="{{ property.main_photo.url }}" 
+                             class="img-fluid rounded main-image cursor-zoom" 
+                             alt="{{ property.title }}"
+                             data-bs-toggle="modal" 
+                             data-bs-target="#imageModal"
+                             onclick="showImageInModal('{{ property.main_photo.url }}', '{{ property.title }}')">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Описание -->
+            <div class="property-info card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">Описание</h3>
+                    <p class="card-text">{{ property.description }}</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h4>Характеристики</h4>
+                            <ul class="list-unstyled">
+                                <li><strong>Тип:</strong> {{ property.property_type.name }}</li>
+                                <li><strong>Цена:</strong> {{ property.price|floatformat:"0" }} ₽</li>
+                                <li><strong>Площадь:</strong> {{ property.sqft }} кв.м</li>
+                                <li><strong>Спальни:</strong> {{ property.bedrooms }}</li>
+                                <li><strong>Туалеты:</strong> {{ property.bathrooms }}</li>
+                                <li><strong>Комнат:</strong> {{ property.rooms }}</li>
+                                {% if property.property_type.name == "Дача" and property.plot_area %}
+                                <li><strong>Участок:</strong> {{ property.plot_area }} соток</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Адрес</h4>
+                            <address>
+                                <i class="fas fa-map-marker-alt"></i> {{ property.address }}, {{ property.city }}
+                            </address>
+
+                            <h4 class="mt-3">Агент</h4>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-user-circle fa-2x me-2"></i>
+                                <div>
+                                    <strong>{{ property.agent.get_full_name }}</strong><br>
+                                    <small class="text-muted">{{ property.agent.email }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Боковая панель -->
+        <div class="col-lg-4">
+            <div class="photo-gallery row">
+                {% for photo in property.get_all_photos %}
+                    {% if not forloop.first %}
+                    <div class="col-md-4 col-6 mb-3">
+                        <img src="{{ photo.image.url }}" 
+                             class="img-fluid rounded cursor-zoom sidebar-image"
+                             data-bs-toggle="modal" 
+                             data-bs-target="#imageModal"
+                             onclick="showImageInModal('{{ photo.image.url }}', '{{ property.title }}')">
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Похожие объекты</h5>
+                </div>
+                <div class="card-body">
+                    {% for similar in similar_properties %}
+                    <div class="mb-3">
+                        <a href="{% url 'property_detail' similar.id %}" class="text-decoration-none">
+                            <div class="d-flex">
+                                <img src="{{ similar.main_photo.url }}" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                <div>
+                                    <h6 class="mb-1">{{ similar.title }}</h6>
+                                    <p class="text-muted small mb-0">{{ similar.price|floatformat:"0" }} ₽</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <div class="property-info">
-        <p><strong>Цена:</strong> {{ property.price }} ₽</p>
-        <p><strong>Адрес:</strong> {{ property.address }}</p>
-        <p><strong>Город:</strong> {{ property.city }}</p>
-        <p><strong>Тип:</strong> {{ property.property_type.name }}</p>
-        <p><strong>Спальни:</strong> {{ property.bedrooms }}</p>
-        <p><strong>Ванные:</strong> {{ property.bathrooms }}</p>
-        <p><strong>Площадь:</strong> {{ property.sqft }} кв.футов</p>
-        
-        <h3>Описание</h3>
-        <p>{{ property.description }}</p>
+</div>
+
+<!-- Модалка -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true" style="z-index: 1060;">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" class="img-fluid" style="max-height: 80vh;">
+                <p id="modalImageTitle" class="text-white mt-2"></p>
+            </div>
+        </div>
     </div>
 </div>
 
 <style>
-    .property-detail {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    
-    .property-images {
-        margin-bottom: 20px;
-    }
-    
-    .main-photo {
-        max-width: 100%;
-        height: auto;
+    .main-image {
+        height: 100vh; /* Заполняет всю высоту экрана */
+        width: 100%;
+        object-fit: cover; /* Сохраняет пропорции изображения */
+        cursor: pointer;
+        transition: transform 0.3s;
         border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    
+
+    .main-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.11);
+    }
+
+    .sidebar-image {
+        width: 100%; /* Устанавливаем ширину 100% для изображения */
+        height: auto; /* Убираем фиксированную высоту для пропорционального отображения */
+        object-fit: cover; /* Сохраняем пропорции изображения */
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 4px;
+    }
+
+    .sidebar-image:hover {
+        opacity: 0.8;
+        border-color: #BFA315;
+        transform: scale(1.05);
+    }
+
+    .thumbnail {
+        height: 130px;
+        width: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 4px;
+        border: 2px solid transparent;
+    }
+
+    .thumbnail:hover {
+        opacity: 0.8;
+        border-color: #BFA315;
+        transform: scale(1.05);
+    }
+
     .property-info {
-        background: #f9f9f9;
-        padding: 20px;
+        border: none;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
         border-radius: 8px;
+        background: white;
+    }
+
+    .bg-primary {
+        background-color: #BFA315 !important;
+    }
+
+    .cursor-zoom {
+        cursor: zoom-in;
+    }
+
+    .modal-backdrop {
+        opacity: 0.9 !important;
+        background-color: #000 !important;
     }
 </style>
+
+<script>
+    function showImageInModal(imageUrl, title) {
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalImageTitle');
+        modalImage.src = imageUrl;
+        modalTitle.textContent = title || '';
+        modalImage.onload = function () {
+            const maxH = window.innerHeight * 0.8;
+            const maxW = window.innerWidth * 0.8;
+            this.style.maxHeight = maxH + 'px';
+            this.style.maxWidth = maxW + 'px';
+        };
+    }
+
+    document.getElementById('imageModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+            const modal = bootstrap.Modal.getInstance(this);
+            modal.hide();
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('imageModal'));
+            if (modal) modal.hide();
+        }
+    });
+</script>
+
 {% endblock %}

@@ -62,11 +62,12 @@ class Feedback(models.Model):
         super().clean()
         
         # Очистка и проверка сообщения
-        self.message = self.message.strip()
-        if len(self.message) < 10:
-            raise ValidationError({
-                'message': 'Сообщение должно содержать минимум 10 символов'
-            })
+        if self.message:
+            self.message = self.message.strip()
+            if len(self.message) < 10:
+                raise ValidationError({'message': 'Сообщение должно содержать минимум 10 символов'})
+        else:
+            raise ValidationError({'message': 'Поле сообщения не может быть пустым'})
         
         # Проверка email при выборе способа связи по почте
         if self.contact_method == 'email' and not self.email:

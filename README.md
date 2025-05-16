@@ -1,1 +1,4 @@
 # project_lighthouse
+
+director123456789
+worker123456789

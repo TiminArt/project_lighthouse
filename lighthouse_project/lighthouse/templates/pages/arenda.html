@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Аренда жилья | МАЯК{% endblock %}</title>
     {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/arenda.css' %}">
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'css/arenda.css' %}">
     {% endblock %}
 </head>
 {% block content %}
@@ -15,7 +15,7 @@
         <div class="arenda__present">
             <h1>АРЕНДА ЖИЛЬЯ</h1>
             <p>Беслатно поможем сдать вашу квартиру!</p>
-            <p class="arenda__main-text">Наши Агенты предоставим услуги по сопровождению сделки аренды жилья. Подборка наших экспертов помогут арендодателям арендовать жильё, а арендаторам найти подходящий вариант жилья или квартиры, обеспечив комфорт и безопасность их общения</p>
+            <p class="arenda__main-text">Наши Агенты предоставят услуги по сопровождению сделки аренды жилья.<br>Арендодателям: бесплатно найти достойных арендаторов,составить договор, отвечающий всем вашим требованиям и соответствующий законодательству.<br>Арендаторам: найти подходящий вариант жилья, обеспечив юридическую чистоту договора</p>
         </div> 
         <img src="{% static 'img/arenda-img.png' %}" alt="Аренда">
     </section>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат с ИИ</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Чат с ИИ</h1>
+
+    <form id="question-form">
+        <input type="text" id="question" placeholder="Задайте вопрос" required>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <div id="response" style="margin-top: 20px;"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#question-form').on('submit', function (event) {
+                event.preventDefault();
+
+                var question = $('#question').val().trim().toLowerCase();
+
+                if (question) {
+                    $.ajax({
+                        url: '',  // POST-запрос к текущему URL
+                        method: 'POST',
+                        data: {
+                            'question': question,
+                            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()  // CSRF защита
+                        },
+                        success: function (response) {
+                            var botReply = response.answer;
+                            $('#response').html(
+                                `<p><strong>Вы:</strong> ${$('#question').val()}</p>
+                                 <p><strong>Ответ:</strong> ${botReply}</p>`
+                            );
+                            $('#question').val(''); // очищаем поле ввода
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
