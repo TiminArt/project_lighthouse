@@ -4,8 +4,6 @@
 {% block content %}
 <div class="container py-5">
     <h1 class="mb-4">Наши объекты недвижимости</h1>
-    
-    <!-- Фильтры -->
     <div class="card mb-4 shadow-sm">
         <div class="card-body">
             <form id="filter-form" class="row g-3">
@@ -13,7 +11,7 @@
                     <select name="city" class="form-select">
                         <option value="">Все города</option>
                         {% for city in cities %}
-                        <option value="{{ city }}" {% if request.GET.city == city %}selected{% endif %}>{{ city }}</option>
+                            <option value="{{ city.id }}" {% if current_city == city.id|stringformat:"s" %}selected{% endif %}>{{ city.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -39,13 +37,11 @@
         </div>
     </div>
 
-    <!-- Результаты -->
     <div id="property-results">
         <div class="row">
             {% for property in page_obj %}
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <!-- Бейдж статуса и featured -->
                     <div class="position-absolute top-0 start-0 m-2">
                         {% if property.is_featured %}
                         <span class="badge" style="background-color: #BFA315; color: #000;">Рекомендуем</span>
@@ -63,10 +59,11 @@
                         <p class="text-muted">
                             <i class="fas fa-map-marker-alt"></i> {{ property.address }}, {{ property.city }}
                         </p>
-                        <div class="d-flex justify-content-between text-muted small">
+                        <div class="d-flex flex-wrap justify-content-between text-muted small">
                             <span><i class="fas fa-door-open"></i> Комнат: {{ property.rooms }}</span>
-                            <span><i class="fas fa-bath"></i>кол-во туалетов: {{ property.bathrooms }} </span>
+                            <span><i class="fas fa-bath"></i> Туалетов: {{ property.bathrooms }}</span>
                             <span><i class="fas fa-ruler-combined"></i> {{ property.sqft }} кв.м</span>
+                            <span><i class="fas fa-building"></i> Этаж: {{ property.floor_number }}</span>
                         </div>
                     </div>
                     <div class="card-footer bg-transparent">
@@ -84,7 +81,7 @@
         </div>
     </div>
 </div>
-<!-- Пагинация -->
+
 {% if page_obj.has_other_pages %}
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center mt-4">
@@ -95,7 +92,7 @@
             </a>
         </li>
         {% endif %}
-        
+
         {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
             <li class="page-item active"><span class="page-link" style="background-color: #BFA315; border-color: #BFA315;">{{ num }}</span></li>
@@ -107,7 +104,7 @@
             </li>
             {% endif %}
         {% endfor %}
-        
+
         {% if page_obj.has_next %}
         <li class="page-item">
             <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" style="color: #BFA315;">

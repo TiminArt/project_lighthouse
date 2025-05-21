@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin", 
     'feedback.apps.FeedbackConfig',
     'lighthouse.apps.LighthouseConfig',
     "django.contrib.admin",
@@ -88,9 +89,13 @@ WSGI_APPLICATION = "lighthouse.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'lighthouse',
+        'USER': 'lighthouse_user',
+        'PASSWORD': 'Tema130770', 
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -117,11 +122,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'  # Русский язык
-TIME_ZONE = 'Europe/Moscow'  # Часовой пояс
-USE_I18N = True  # Включение интернационализации
-USE_L10N = True  # Локализация форматов
-USE_TZ = True  # Использование часового пояса
+LANGUAGE_CODE = 'ru-ru'  
+TIME_ZONE = 'Europe/Moscow'  
+USE_I18N = True  
+USE_L10N = True  
+USE_TZ = True  
 
 # Дополнительные языки (опционально)
 LANGUAGES = [
@@ -184,3 +189,51 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
+
+# Кастомная админка
+JAZZMIN_SETTINGS = {
+    "site_title": "Система Lighthouse",
+    "site_header": "Панель агента",
+    "site_brand": "Система Lighthouse",
+    "welcome_sign": "Добро пожаловать в CRM Lighthouse",
+    "primary_color": "#BFA315",  # Цвет шапки и ссылок
+    "accent": "#FFD700",         # Цвет выделения (например, кнопок)
+    "navbar": "#212529",         # Цвет навигационной панели (слева)
+    "no_navbar_border": True,
+    "body_small_text": True,
+    "footer": "CRM Lighthouse © 2025",
+
+    # Иконки для моделей (необязательно)
+    "icons": {
+        "lighthouse.Property": "fas fa-building",
+        "lighthouse.Agent": "fas fa-user-tie",
+        "auth.User": "fas fa-users",
+    },
+
+    # Удалить боковое меню при желании
+    "hide_apps": [],
+    "hide_models": [],
+
+    # Верхнее меню
+    "topmenu_links": [
+        {"name": "Главная", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"model": "lighthouse.property"},
+        {"model": "auth.user"},
+    ],
+    
+    # Логотипы (можно настроить позже)
+    # "site_logo": "img/logo.png",
+    # "site_logo_classes": "img-circle",
+}
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": True,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_flat_style": True,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+}

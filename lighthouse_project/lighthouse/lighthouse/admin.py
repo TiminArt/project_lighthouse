@@ -1,5 +1,5 @@
 ﻿from django.contrib import admin
-from .models import Profile  # ← Импорт профиля
+from .models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
@@ -8,6 +8,6 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 
-admin.site.site_header = "Маяк - Администрирование"
-admin.site.site_title = "Админ-панель Маяк"
-admin.site.index_title = "Управление сайтом"
+# admin.site.site_header = "Маяк - Администрирование"
+# admin.site.site_title = "Админ-панель Маяк"
+# admin.site.index_title = "Управление сайтом"

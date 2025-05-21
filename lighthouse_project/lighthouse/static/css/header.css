@@ -52,7 +52,7 @@ header {
 .navigation a {
     text-decoration: none;
     color: #333;
-    font-size: 13px;
+    font-size: 15px;
     transition: color 0.3s;
     white-space: nowrap;
 }

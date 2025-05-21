@@ -7,7 +7,7 @@
 hr {
     height: 2px;
     width: 1000px; 
-    background-color: #e0d20d;
+    background-color: #BFA315;
     margin: 0 auto; 
 }
 
@@ -107,7 +107,6 @@ hr {
 .services-list {
     list-style-type: none;
     padding: 0;
-    /* max-width: 800px; */
     margin: 0 auto;
 }
 
@@ -115,7 +114,7 @@ hr {
     padding: 15px 20px;
     margin-bottom: 15px;
     background-color: #f8f9fa;
-    border-left: 4px solid #e1bf18;
+    border-left: 4px solid #BFA315;
     border-radius: 4px;
     font-size: 18px;
     transition: all 0.3s ease;

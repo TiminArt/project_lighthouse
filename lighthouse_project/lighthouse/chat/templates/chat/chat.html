@@ -10,6 +10,7 @@
     <h1>Чат с ИИ</h1>
 
     <form id="question-form">
+        {% csrf_token %}
         <input type="text" id="question" placeholder="Задайте вопрос" required>
         <button type="submit">Отправить</button>
     </form>
@@ -44,5 +45,6 @@
             });
         });
     </script>
+    
 </body>
 </html>

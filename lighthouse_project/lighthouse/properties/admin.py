@@ -1,7 +1,11 @@
-# недвижимость
 from django.contrib import admin
-from .models import Property, PropertyType, PropertyImage
+from .models import Property, PropertyType, PropertyImage, City
 from django.utils.html import format_html
+
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ['name']
 
 
 class PropertyImageInline(admin.TabularInline):
@@ -17,7 +21,7 @@ class PropertyImageInline(admin.TabularInline):
 
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ('title', 'city', 'price', 'status', 'floors', 'has_balcony', 'photo_count')
+    list_display = ('title', 'city', 'price', 'status', 'address', 'photo_count')
     list_filter = ('status', 'city', 'property_type', 'has_balcony')
     search_fields = ('title', 'address', 'description')
     inlines = [PropertyImageInline]
@@ -37,7 +41,8 @@ class PropertyAdmin(admin.ModelAdmin):
                 'address', 'city', 'property_type',
                 'agent', 'is_featured'
             )
-        }),)
+        }),
+    )
 
     def photo_count(self, obj):
         return obj.get_all_photos().count()

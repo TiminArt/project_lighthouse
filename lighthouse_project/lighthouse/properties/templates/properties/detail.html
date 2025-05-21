@@ -1,22 +1,21 @@
 
 {% extends "base/base.html" %}
-
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
 {% block content %}
 <div class="container my-5">
     <div class="row">
         <div class="col-lg-8">
-            <!-- Заголовок и статус -->
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1>{{ property.title }}</h1>
                 <span class="badge {% if property.status == 'sale' %}bg-success{% else %}bg-primary{% endif %} fs-6" style="background-color: #BFA315 !important;">
                     {{ property.get_status_display }}
                 </span>
             </div>
-
-            <!-- Галлерея -->
              <div class="property-gallery mb-4">
                 <div class="row g-2">
-                    <!-- Главное фото -->
                     <div class="col-md-12">
                         <img src="{{ property.main_photo.url }}" 
                              class="img-fluid rounded main-image cursor-zoom" 
@@ -27,8 +26,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Описание -->
             <div class="property-info card mb-4">
                 <div class="card-body">
                     <h3 class="card-title">Описание</h3>
@@ -39,9 +36,10 @@
                             <h4>Характеристики</h4>
                             <ul class="list-unstyled">
                                 <li><strong>Тип:</strong> {{ property.property_type.name }}</li>
+                                <li><strong>Адрес:</strong> {{ property.address }}</li>
                                 <li><strong>Цена:</strong> {{ property.price|floatformat:"0" }} ₽</li>
                                 <li><strong>Площадь:</strong> {{ property.sqft }} кв.м</li>
-                                <li><strong>Спальни:</strong> {{ property.bedrooms }}</li>
+                                <li><strong>Этаж:</strong> {{ property.floor_number }}</li>
                                 <li><strong>Туалеты:</strong> {{ property.bathrooms }}</li>
                                 <li><strong>Комнат:</strong> {{ property.rooms }}</li>
                                 {% if property.property_type.name == "Дача" and property.plot_area %}
@@ -122,75 +120,6 @@
         </div>
     </div>
 </div>
-
-<style>
-    .main-image {
-        height: 100vh; /* Заполняет всю высоту экрана */
-        width: 100%;
-        object-fit: cover; /* Сохраняет пропорции изображения */
-        cursor: pointer;
-        transition: transform 0.3s;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .main-image:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.11);
-    }
-
-    .sidebar-image {
-        width: 100%; /* Устанавливаем ширину 100% для изображения */
-        height: auto; /* Убираем фиксированную высоту для пропорционального отображения */
-        object-fit: cover; /* Сохраняем пропорции изображения */
-        cursor: pointer;
-        transition: all 0.3s;
-        border-radius: 4px;
-    }
-
-    .sidebar-image:hover {
-        opacity: 0.8;
-        border-color: #BFA315;
-        transform: scale(1.05);
-    }
-
-    .thumbnail {
-        height: 130px;
-        width: 100%;
-        object-fit: cover;
-        cursor: pointer;
-        transition: all 0.3s;
-        border-radius: 4px;
-        border: 2px solid transparent;
-    }
-
-    .thumbnail:hover {
-        opacity: 0.8;
-        border-color: #BFA315;
-        transform: scale(1.05);
-    }
-
-    .property-info {
-        border: none;
-        box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        background: white;
-    }
-
-    .bg-primary {
-        background-color: #BFA315 !important;
-    }
-
-    .cursor-zoom {
-        cursor: zoom-in;
-    }
-
-    .modal-backdrop {
-        opacity: 0.9 !important;
-        background-color: #000 !important;
-    }
-</style>
-
 <script>
     function showImageInModal(imageUrl, title) {
         const modalImage = document.getElementById('modalImage');
