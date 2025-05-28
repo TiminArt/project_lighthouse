@@ -1,14 +1,12 @@
-/* Разделительная линия */
 .divider {
     height: 1px;
-    background-color: #d1c700;
-    margin: 0;            /* Убираем auto */
+    background-color: #BFA315;
+    margin: 0;           
     padding: 0;
-    width: 100%;          /* На всю ширину экрана */
-    max-width: none;      /* Убираем ограничение */
+    width: 100%;         
+    max-width: none;      
 }
 
-/* Основной футер */
 .footer {
     background-color: #f8f8f8;
     color: #333;
@@ -17,11 +15,10 @@
 }
 
 .footer-container {
-    width: 100%; /* Убираем ограничение ширины */
+    width: 100%; 
     padding: 40px 20px;
 }
 
-/* Левая часть футера (логотип и контакты) */
 .footer-logo-section {
     margin-bottom: 25px;
 }
@@ -52,7 +49,6 @@
     text-decoration: none;
 }
 
-/* Нижняя часть футера */
 .footer-bottom {
     font-size: 14px;
     color: #666;
@@ -76,11 +72,7 @@
     margin-top: 20px;
 }
 
-/* ----------------- */
-/*     Адаптивность  */
-/* ----------------- */
 
-/* Планшеты и ПК */
 @media (min-width: 1024px) {
     .footer {
         padding: 4rem;
@@ -92,7 +84,6 @@
     }
 }
 
-/* Мобильные устройства */
 @media (max-width: 768px) {
     .footer {
         padding: 30px 0;
@@ -118,7 +109,6 @@
     }
 }
 
-/* Очень маленькие экраны */
 @media (max-width: 480px) {
     .footer-container {
         padding: 20px 15px;

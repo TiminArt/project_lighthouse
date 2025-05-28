@@ -11,7 +11,7 @@
 
     <form id="question-form">
         {% csrf_token %}
-        <input type="text" id="question" placeholder="Задайте вопрос" required>
+        <input type="text" id="question" name="question" placeholder="Задайте вопрос" required>
         <button type="submit">Отправить</button>
     </form>
 

@@ -12,7 +12,7 @@
 hr {
     height: 2px;
     width: 1000px; 
-    background-color: #e0d20d;
+    background-color: #BFA315;
     margin: 0 auto; 
 }
 
@@ -37,6 +37,7 @@ hr {
     object-position: end;
     width: 600px;
     margin-top: 60px;
+    border-radius: 20px;
 }
 
 .info-page h1 {
@@ -57,11 +58,6 @@ hr {
     font-style: italic;
     width: 100%;
 }
-
-
-
-
-
 
 .services-section {
     background-color: white;
@@ -103,7 +99,7 @@ hr {
     padding: 15px 20px;
     margin-bottom: 15px;
     background-color: #f8f9fa;
-    border-left: 4px solid #e1bf18;
+    border-left: 4px solid #BFA315;
     border-radius: 4px;
     font-size: 18px;
     transition: all 0.3s ease;
@@ -114,17 +110,79 @@ hr {
     transform: translateX(5px);
 }
 
-@media (max-width: 768px) {
-    .services-section {
-        padding: 25px;
+@media (max-width: 992px) {
+    .info-page {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
     }
-    
-    .services-title {
-        font-size: 28px;
+
+    .info-page > div {
+        max-width: 100%;
+        padding: 30px 20px;
+        text-align: center;
     }
-    
-    .services-list li {
+
+    .info-page img {
+        width: 100%;
+        height: auto;
+        margin: 30px 0 0 0;
+    }
+
+    .info-page h1 {
+        font-size: 30px;
+    }
+
+    .info-page p {
         font-size: 16px;
-        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-top: 30px;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    hr {
+        width: 90%;
+    }
+
+    .info-page {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .info-page img {
+        display: none; 
+    }
+
+    .info-page h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .info-page p {
+        font-size: 15px;
+    }
+
+    .services-section {
+        padding: 20px 15px;
+        margin-top: 30px;
+    }
+
+    .services-title {
+        font-size: 24px;
+    }
+
+    .services-list {
+        padding: 0;
+    }
+
+    .services-list li {
+        font-size: 15px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
     }
 }

@@ -24,7 +24,8 @@
                 <p class="chat-header"  style="color: #BFA315;">Чат с консультантом</p>
                 <div id="chat-box" class="chat-box">
                 </div>
-                <form id="chat-form" class="chat-form">
+                <form id="chat-form" class="chat-form" method="post">
+                    {% csrf_token %}
                     <input type="text" id="user-input" class="user-input" placeholder="Задайте вопрос..." required>
                     <button type="submit" class="send-button">Отправить</button>
                 </form>

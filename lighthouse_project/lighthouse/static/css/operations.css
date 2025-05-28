@@ -1,4 +1,44 @@
-﻿.services-section {
+﻿body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+* {
+    box-sizing: border-box;
+}
+.services-hero-wrapper {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.services-hero {
+    padding: 140px 20px 80px;
+    background: linear-gradient(rgba(30, 30, 30, 0.75), rgba(30, 30, 30, 0.75)),
+                url('../img/bg.jpg') center/cover no-repeat;
+    text-align: center;
+    border-bottom: 3px solid #444;
+    z-index: 1;
+    margin-top: -140px; 
+    padding-top: 200px; 
+}
+
+.hero-title {
+    font-size: 42px;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 800;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: #e0e0e0;
+    max-width: 720px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.services-section {
     padding-bottom: 20px;
 }
 .services-section h2 {
@@ -7,42 +47,81 @@
     margin-bottom: 30px;
     color: #222;
 }
-.operations__text {
-    text-align: center;
-}
-.operations__link {
-    text-decoration: none;
-    color: #0775AB;
-}
 .services-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
 }
-
 .service-category {
     display: flex;
     background: #fff;
     padding: 30px;
     border-radius: 8px;
 }
-
 .service-category h3 {
     font-size: 24px;
     margin-bottom: 20px;
     padding-top: 30px;
     width: 366px;
 }
-
 .service-list {
     margin: 20px;
     list-style-type: none;
     padding-left: 0;
 }
-
 .service-list li {
     padding: 10px 0;
     border-bottom: 1px solid #BFA315;
     color: #004992;
     font-size: 18px;
+}
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 36px;
+    }
+    .hero-subtitle {
+        font-size: 18px;
+        max-width: 90%;
+    }
+    .service-category {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-hero {
+        padding: 100px 15px 60px;
+        padding-top: 160px;
+    }
+    .hero-title {
+        font-size: 28px;
+    }
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    .service-category {
+        padding: 20px;
+    }
+    .service-category h3 {
+        font-size: 20px;
+    }
+    .service-list li {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-hero {
+        padding: 80px 10px 40px;
+        padding-top: 140px;
+    }
+    .hero-title {
+        font-size: 22px;
+    }
+    .hero-subtitle {
+        font-size: 14px;
+    }
+    .services-section h2 {
+        font-size: 24px;
+    }
 }

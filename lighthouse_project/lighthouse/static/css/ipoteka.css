@@ -6,7 +6,7 @@
 hr {
     height: 2px;
     width: 1000px; 
-    background-color: #e0d20d;
+    background-color: #BFA315;
     margin: 0 auto; 
 }
 
@@ -30,6 +30,7 @@ hr {
     object-fit: cover;
     object-position: end;
     width: 600px;
+    border-radius: 20px;
 }
 
 .info-page h1 {
@@ -78,7 +79,7 @@ hr {
     padding: 25px;
     border-radius: 8px;
     margin-bottom: 30px;
-    border-left: 4px solid #d1c700;
+    border-left: 4px solid #BFA315;
 }
 
 .benefits-block {
@@ -101,7 +102,7 @@ hr {
 .benefit-icon {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: #d1c700;
+    color: #BFA315;
 }
 
 .work-process {
@@ -157,7 +158,21 @@ hr {
     background-color: #f9f9f9;
     padding: 25px;
     border-radius: 8px;
-    border-left: 4px solid #d1c700;
+    border-left: 4px solid #BFA315;
+}
+
+.ipoteka__footer-text {
+    margin-top: 40px;
+    text-align: center;
+    color: #666;
+    font-family: italic;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border-left: 4px solid #BFA315;
+    border-right: 4px solid #BFA315;
+    font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cta-section {
@@ -172,7 +187,7 @@ hr {
 
 .cta-button {
     display: inline-block;
-    background-color: #d1c700;
+    background-color: #BFA315;
     color: #333;
     padding: 15px 30px;
     border-radius: 30px;
@@ -199,15 +214,71 @@ hr {
     }
 }
 
+@media (max-width: 992px) {
+    .info-page {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
 
-.ipoteka__footer-text {
-    margin-top: 40px;
-    text-align: center;
-    color: #666;
-    font-family: italic;
-    background-color: rgb(255, 255, 255);
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: 2px #BFA315 solid;
-    font-size: 20px;
+    .info-page > div {
+        max-width: 100%;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .info-page img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
 }
+
+@media (max-width: 768px) {
+    body {
+        margin-top: 30px;
+        font-size: 16px;
+    }
+
+    hr {
+        width: 90%;
+    }
+
+    .info-page h1 {
+        font-size: 28px;
+    }
+
+    .info-page p {
+        font-size: 16px;
+    }
+
+    .info-page img {
+        display: none;
+    }
+
+    .benefits-block {
+        grid-template-columns: 1fr;
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .work-process,
+    .text-block,
+    .service-details {
+        padding: 15px;
+    }
+
+    .cta-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .ipoteka__footer-text {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+}
+

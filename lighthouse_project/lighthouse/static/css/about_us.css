@@ -62,13 +62,11 @@
     margin: 0;
 }
 
-/* Адаптивность */
 @media (max-width: 992px) {
     .contacts-wrapper {
         grid-template-columns: 1fr;
     }
 }
-
 @media (max-width: 768px) {
     .section-title {
         font-size: 2em;
@@ -83,7 +81,6 @@
         height: 300px;
     }
 }
-
 @media (max-width: 480px) {
     .section-title {
         font-size: 1.6em;

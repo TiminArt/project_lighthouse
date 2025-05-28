@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 {% load static %}
-
+{% load humanize %}
 {% block content %}
 <div class="container py-5">
     <h1 class="mb-4">Наши объекты недвижимости</h1>
@@ -55,7 +55,9 @@
                     <img src="{{ property.main_photo.url }}" class="card-img-top property-thumbnail" alt="{{ property.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ property.title }}</h5>
-                        <p class="fw-bold" style="color: #BFA315;">{{ property.price|floatformat:"0" }} ₽</p>
+                        <p class="fw-bold" style="color: #BFA315;">
+                            {{ property.price|floatformat:"0"|intcomma }} ₽
+                        </p>
                         <p class="text-muted">
                             <i class="fas fa-map-marker-alt"></i> {{ property.address }}, {{ property.city }}
                         </p>

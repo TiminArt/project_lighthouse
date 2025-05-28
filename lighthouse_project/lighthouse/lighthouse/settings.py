@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'properties.apps.PropertiesConfig',
     'ai',
     'chat',
+    'django.contrib.humanize',
 ]
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

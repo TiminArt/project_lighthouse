@@ -7,45 +7,50 @@
 hr {
     height: 2px;
     width: 1000px; 
-    background-color: #e0d20d;
+    background-color: #BFA315;
     margin: 0 auto; 
+}
+body {
+    margin-top: 50px;
+    background-color: #fff;
+    overflow-x: hidden;
 }
 
 .info-page {
     display: flex;
     max-width: 1200px;
+    margin: 0 auto;
     padding: 0;
 }
 
 .info-page > div {
     flex: 1;
-    max-width: 50%;
     padding: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 50%;
 }
 
 .info-page img {
+    width: 600px;
     height: 100%;
-    box-shadow: none;
     object-fit: cover;
     object-position: end;
-    width: 600px;
+    border-radius: 20px;
 }
 
 .info-page h1 {
-    color: #333;
-    margin-top: -10px;
     font-size: 36px;
+    color: #333;
     margin-bottom: 20px;
 }
 
 .info-page p {
-    color: #666;
     font-size: 18px;
-    margin-bottom: 20px;
+    color: #666;
     line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 .secondary__main-text {
@@ -61,8 +66,10 @@ hr {
     background-color: rgb(255, 255, 255);
     padding: 10px 20px;
     border-radius: 20px;
-    border: 2px #BFA315 solid;
+    border-left: 4px solid #BFA315;
+    border-right: 4px solid #BFA315;
     font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .services-section {
     background-color: white;
@@ -99,7 +106,6 @@ hr {
 .services-list {
     list-style-type: none;
     padding: 0;
-    /* max-width: 800px; */
     margin: 0 auto;
 }
 
@@ -107,7 +113,7 @@ hr {
     padding: 15px 20px;
     margin-bottom: 15px;
     background-color: #f8f9fa;
-    border-left: 4px solid #e1bf18;
+    border-left: 4px solid #BFA315;
     border-radius: 4px;
     font-size: 18px;
     transition: all 0.3s ease;
@@ -144,7 +150,6 @@ hr {
 }
 
 .card {
-    /* background-color: white; */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
@@ -210,9 +215,81 @@ hr {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 12px; /* Размер точки */
+    width: 12px; 
     height: 12px;
     background-color: #BFA315; 
     border-radius: 50%; 
     display: inline-block;
+}
+@media (max-width: 992px) {
+    .info-page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-page > div {
+        max-width: 100%;
+        padding: 30px 20px;
+    }
+
+    .info-page h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .info-page p {
+        font-size: 16px;
+        text-align: justify;
+    }
+
+    .info-page img {
+        max-width: 100%;
+        margin-top: 30px;
+    }
+
+    .extra-item-text {
+        font-size: 18px;
+    }
+
+    .services-title {
+        font-size: 26px;
+        padding: 12px;
+    }
+
+    .services-text {
+        font-size: 16px;
+    }
+
+    .services-list li {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+
+    .extra-item h3 {
+        font-size: 24px;
+    }
+
+    .free-service-item {
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    .card-header {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .card-body {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .stripes {
+        display: none;
+    }
 }

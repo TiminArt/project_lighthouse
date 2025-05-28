@@ -2,17 +2,31 @@
 {% load static %}
 
 {% block title %}ChatGPT | Маяк{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/chatAI.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>ChatGPT</h2>
+<div class="chat-ai-container">
+    <h2 class="chat-ai-title">Чат с ChatGPT</h2>
+    <p class="chat-ai-description">
+        Задайте вопрос по недвижимости, и интеллектуальный ассистент на базе ChatGPT даст подробный ответ.
+        Услуги, советы, процедуры — всё в одном месте.
+    </p>
+
     <form method="post">{% csrf_token %}
-        <textarea name="message" class="form-control" rows="3"></textarea>
-        <button class="btn btn-primary mt-2">Отправить</button>
+        <textarea name="message" class="form-control" rows="3" placeholder="Введите ваш вопрос..."></textarea>
+        <div class="text-center">
+            <button class="btn btn-primary mt-3">Отправить</button>
+        </div>
     </form>
+
     <div class="mt-4">
         {% for msg in messages %}
-            <p><strong>{{ msg.role }}:</strong> {{ msg.content }}</p>
+            <div class="chat-message">
+                <strong>{{ msg.role|title }}:</strong>
+                {{ msg.content }}
+            </div>
         {% endfor %}
     </div>
 </div>

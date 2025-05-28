@@ -1,18 +1,31 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-{% block title %}OpenAI | Маяк{% endblock %}
+{% block title %}LLaMA / Mistral | Маяк{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/chatAI.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>LLaMA / Mistral</h2>
+<div class="chat-ai-container">
+    <h2 class="chat-ai-title">Чат с LLaMA / Mistral</h2>
+    <p class="chat-ai-description">
+        Альтернатива от открытого сообщества — модели LLaMA и Mistral. Получайте быстрые и точные ответы от современных ИИ.
+    </p>
+
     <form method="post">{% csrf_token %}
-        <textarea name="message" class="form-control" rows="3"></textarea>
-        <button class="btn btn-primary mt-2">Отправить</button>
+        <textarea name="message" class="form-control" rows="3" placeholder="Введите ваш вопрос..."></textarea>
+        <div class="text-center">
+            <button class="btn btn-primary mt-3">Отправить</button>
+        </div>
     </form>
+
     <div class="mt-4">
         {% for msg in messages %}
-            <p><strong>{{ msg.role }}:</strong> {{ msg.content }}</p>
+            <div class="chat-message">
+                <strong>{{ msg.role|title }}:</strong>
+                {{ msg.content }}
+            </div>
         {% endfor %}
     </div>
 </div>

@@ -6,7 +6,7 @@ html, body {
 }
 
 nav ul li a:hover {
-    color: #a09500;
+    color: #BFA315;
 }
 
 .services-page {
@@ -168,7 +168,6 @@ nav ul li a:hover {
 
 /* Бесплатные услуги */
 .free-services {
-    border: 3px #BFA315 double;
     padding-top: 70px;
     padding-bottom: 70px;
     margin-bottom: 70px;
@@ -177,6 +176,8 @@ nav ul li a:hover {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-right: 4px double #BFA315;
+    border-left: 4px double #BFA315;
 }
 
 .free-services h2 {
@@ -392,77 +393,83 @@ nav ul li a:hover {
     right: 0;
 }
 
-@media (max-width: 992px) {
-    .hero-section {
-        height: 80vh;
-        min-height: 500px;
-    }
-    
-    .hero-section h1 {
-        font-size: 3rem;
-    }
-    
-    .hero-section .subtitle {
-        font-size: 1.4rem;
-    }
-}
-
 @media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-section .subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .hero-section {
-        height: 70vh;
-        min-height: 400px;
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
     }
 
-    .hero-arrow {
-        width: 30px;
-        height: 30px;
-        bottom: 20px;
-    }
-
-    .services-section h2,
-    .free-services h2,
-    .additional-services h2 {
-        font-size: 28px;
-    }
-    
-    .service-category,
-    .free-service-item,
-    .checklist {
+    .service-category {
+        flex-direction: column;
         padding: 20px;
     }
+
+    .service-category h3 {
+        font-size: 20px;
+        width: 100%;
+        padding-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .service-list {
+        margin: 0;
+        padding-left: 0;
+        font-size: 16px;
+    }
+
+    .service-list li {
+        font-size: 16px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .free-service-item,
+    .checklist {
+        font-size: 16px;
+        word-wrap: break-word;
+    }
+
+    .free-service-text,
+    .extra-service-text {
+        font-size: 16px;
+        padding-left: 18px;
+    }
+
+    .extra-service-text::before {
+        left: -12px;
+    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section .subtitle {
+        font-size: 1rem;
+    }
+
     .partner-item {
-        flex: 0 0 180px;
+        width: 100px;
+        height: 60px;
     }
-    
+
     .partner-item img {
-        width: 140px;
-        height: 70px;
+        width: 80px;
+        height: 40px;
     }
-    
-    .section-title {
-        font-size: 1.8em;
+
+    .free-services,
+    .additional-services,
+    .services-section {
+        padding: 20px 10px;
     }
-    
-    .partners-subtitle {
-        font-size: 1.3em;
+
+    .checklist-item label {
+        font-size: 16px;
+    }
+
+    .carousel-container {
+        padding: 0 10px;
     }
 }
-
-@media (max-width: 600px) {
-      .partner-item {
-        width: 120px;
-        height: 80px;
-        font-size: 14px;
-      }
-    }
