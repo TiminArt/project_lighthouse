@@ -17,6 +17,7 @@ class PropertyType(models.Model):
     def __str__(self):
         return self.name
 
+
 class City(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название города", unique=True)
 
@@ -27,6 +28,7 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Property(models.Model):
     PROPERTY_STATUS_CHOICES = [
@@ -55,6 +57,7 @@ class Property(models.Model):
     is_featured = models.BooleanField(default=False, verbose_name="Рекомендуемый")
     created_at = models.DateTimeField(default=timezone.now, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+
     class Meta:
         verbose_name = "Объект недвижимости"
         verbose_name_plural = "Объекты недвижимости"
@@ -74,16 +77,22 @@ class Property(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(f"{self.title}-{self.city}")
+            base_slug = slugify(f"{self.title}-{self.city}")
+            slug = base_slug
+            counter = 1
+            while Property.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
         super().save(*args, **kwargs)
 
     def get_all_photos(self):
-        return self.propertyimage_set.all()
+        return self.images.all()
 
 
 class PropertyImage(models.Model):
-    property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='properties/gallery/')
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='images', verbose_name="Объект недвижимости")
+    image = models.ImageField(upload_to='properties/gallery/', verbose_name="Фото")
 
     class Meta:
         verbose_name = "Доп. фото"

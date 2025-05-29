@@ -37,19 +37,17 @@ def property_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Данные для фильтров
-    cities = cache.get_or_set(
-        'property_cities',
-        list(City.objects.all()),
-        60 * 60
-    )
+    # Кэширование данных для фильтров
+    filters_data = cache.get('filters_data')
+    if not filters_data:
+        filters_data = {
+            'cities': list(City.objects.all()),
+            'property_types': PropertyType.objects.annotate(num_properties=Count('properties')).filter(num_properties__gt=0),
+        }
+        cache.set('filters_data', filters_data, 60 * 60)
 
-    property_types = cache.get('property_types')
-    if not property_types:
-        property_types = PropertyType.objects.annotate(
-            num_properties=Count('properties')
-        ).filter(num_properties__gt=0)
-        cache.set('property_types', property_types, 60 * 60)
+    cities = filters_data['cities']
+    property_types = filters_data['property_types']
 
     return render(request, 'properties/list.html', {
         'page_obj': page_obj,
@@ -80,7 +78,7 @@ def property_detail(request, pk):
         ).exclude(pk=pk).order_by('?')[:3]
         cache.set(cache_key, similar_properties, 60 * 30)
 
-    # Обработка формы
+    # Обработка формы запроса
     form = PropertyInquiryForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         send_mail(
@@ -99,7 +97,7 @@ def property_detail(request, pk):
         )
         return redirect('property_detail', pk=pk)
 
-    # Учёт просмотров
+    # Учёт просмотров с кэшированием на 5 минут
     cache_key = f'property_view_{pk}'
     if not cache.get(cache_key):
         property_obj.views += 1

@@ -12,7 +12,6 @@
 {% block content %}
 <div class="services-page">
     <section class="hero-section">
-        <!-- <img src="{% static 'img/services-bg.png' %}" alt="Фон" class="bg-image"> -->
         <img src="{% static 'img/bg.jpg' %}" alt="Фон" class="bg-image">
         <div class="overlay"></div>
         <div class="container">
@@ -62,6 +61,26 @@
                 <p class="free-service-text">Первичная консультация - помощь в подборе недвижимости и ответы на ваши вопросы</p>
                 <p class="free-service-text">Покупка новостроек по всей России</p>
                 <p class="free-service-text">Сдача в аренду вашей квартиры, комнаты, загородного дома</p>
+            </div>
+        </div>
+    </section>
+    <section class="chats" style="margin-bottom: 50px;">
+        <div id="chat-container" class="chat-container">
+            <h3 class="mb-4 text-center" style="color: #BFA315;">Попросить помощи у искусственного интеллекта</h3>
+            <p class="chat-header"  style="color: #BFA315;">Чат с консультантом</p>
+            <div id="chat-box" class="chat-box">
+            </div>
+            <form id="chat-form" class="chat-form" method="post">
+                {% csrf_token %}
+                <input type="text" id="user-input" class="user-input" placeholder="Задайте вопрос..." required>
+                <button type="submit" class="send-button">Отправить</button>
+            </form>
+            <div class="ai-helper text-center my-5">
+                <h3 class="chat-header"  style="color: #BFA315;">Чат с искусственным интеллектом</h2>
+                <div class="d-flex justify-content-center flex-wrap gap-3">
+                    <a href="{% url 'chatgpt' %}" class="ai-button"><span>ChatGPT</span></a>
+                    <a href="{% url 'openchat' %}" class="ai-button"><span>OpenChat (Llama)</span></a>
+                </div>
             </div>
         </div>
     </section>
@@ -162,4 +181,5 @@
         </div>
     </section>
 </div>
+<script src="{% static 'js/chatbot.js' %}"></script>
 {% endblock %}

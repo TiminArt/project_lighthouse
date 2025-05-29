@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
-class FeedbackConfig(AppConfig):
+
+class ReportsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'feedback'
-    verbose_name = 'Заявки'
+    name = 'reports'
+    verbose_name = 'Отчёты'

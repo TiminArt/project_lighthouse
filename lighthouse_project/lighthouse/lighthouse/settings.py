@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap4",
     "accounts",
-    "contacts",
     'properties.apps.PropertiesConfig',
     'ai',
     'chat',
     'django.contrib.humanize',
+    'sslserver',
+    'reports',
 ]
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -238,3 +239,8 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_child_indent": True,
     "sidebar_nav_compact_style": False,
 }
+
+# HTTPS
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
