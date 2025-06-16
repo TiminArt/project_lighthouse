@@ -1,32 +1,42 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-{% block title %}LLaMA / Mistral | Маяк{% endblock %}
+{% block title %}Mistral | Маяк{% endblock %}
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/chatAI.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="chat-ai-container">
-    <h2 class="chat-ai-title">Чат с LLaMA / Mistral</h2>
+    <h2 class="chat-ai-title">Чат с ИИ Mistral</h2>
     <p class="chat-ai-description">
-        Альтернатива от открытого сообщества — модели LLaMA и Mistral. Получайте быстрые и точные ответы от современных ИИ.
+        Альтернатива от открытого сообщества — модели Mistral. Получайте быстрые и точные ответы от современных ИИ.
     </p>
 
-    <form method="post">{% csrf_token %}
+    <form method="post">
+        {% csrf_token %}
         <textarea name="message" class="form-control" rows="3" placeholder="Введите ваш вопрос..."></textarea>
-        <div class="text-center">
-            <button class="btn btn-primary mt-3">Отправить</button>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary" type="submit">Отправить</button>
+            <button class="btn btn-danger" type="submit" name="clear_chat" value="1">Очистить чат</button>
         </div>
     </form>
 
     <div class="mt-4">
-        {% for msg in messages %}
-            <div class="chat-message">
-                <strong>{{ msg.role|title }}:</strong>
-                {{ msg.content }}
-            </div>
-        {% endfor %}
+    {% for msg in messages reversed %}
+        <div class="chat-message">
+            <strong>
+                {% if msg.role == "user" %}
+                    Вы:
+                {% elif msg.role == "assistant" %}
+                    Ассистент:
+                {% else %}
+                    {{ msg.role|title }}:
+                {% endif %}
+            </strong>
+            {{ msg.content }}
+        </div>
+    {% endfor %}
     </div>
 </div>
 {% endblock %}

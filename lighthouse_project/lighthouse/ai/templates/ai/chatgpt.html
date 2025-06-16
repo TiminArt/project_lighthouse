@@ -18,16 +18,25 @@
         <textarea name="message" class="form-control" rows="3" placeholder="Введите ваш вопрос..."></textarea>
         <div class="text-center">
             <button class="btn btn-primary mt-3">Отправить</button>
+            <button class="btn btn-danger" type="submit" name="clear_chat" value="1">Очистить чат</button>
         </div>
     </form>
 
     <div class="mt-4">
-        {% for msg in messages %}
-            <div class="chat-message">
-                <strong>{{ msg.role|title }}:</strong>
-                {{ msg.content }}
-            </div>
-        {% endfor %}
+    {% for msg in messages reversed %}
+        <div class="chat-message">
+            <strong>
+                {% if msg.role == "user" %}
+                    Вы:
+                {% elif msg.role == "assistant" %}
+                    Ассистент:
+                {% else %}
+                    {{ msg.role|title }}:
+                {% endif %}
+            </strong>
+            {{ msg.content }}
+        </div>
+    {% endfor %}
     </div>
 </div>
 {% endblock %}

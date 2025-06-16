@@ -24,3 +24,4 @@ $('#chat-form').on('submit', function(event) {
         });
     }
 });
+// const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;

@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,7 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "lighthouse.wsgi.application"
-
+DEBUG = True
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -187,10 +187,12 @@ LOGGING = {
 }
 
 # ИИ
-load_dotenv()
+# load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
+OPENAI_API_KEY = "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"
+TOGETHER_API_KEY = "b2f7b8e7bb0186f082a7695b53da16ac7ba8ba55fe9ead373d668c22e67b0e88"
 
 # Кастомная админка
 JAZZMIN_SETTINGS = {

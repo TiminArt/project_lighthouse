@@ -7,6 +7,7 @@
     {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {% endblock %}
 </head>
 {% block content %}
@@ -79,7 +80,7 @@
                 <h3 class="chat-header"  style="color: #BFA315;">Чат с искусственным интеллектом</h2>
                 <div class="d-flex justify-content-center flex-wrap gap-3">
                     <a href="{% url 'chatgpt' %}" class="ai-button"><span>ChatGPT</span></a>
-                    <a href="{% url 'openchat' %}" class="ai-button"><span>OpenChat (Llama)</span></a>
+                    <a href="{% url 'openchat' %}" class="ai-button"><span>OpenChat (Mistral)</span></a>
                 </div>
             </div>
         </div>

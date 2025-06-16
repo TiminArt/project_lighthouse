@@ -1,5 +1,7 @@
 /* chatAI.css */
 
+
+
 .chat-ai-container {
     background-color: #ffffff;
     padding: 2rem;
@@ -58,6 +60,24 @@ button.btn-primary:hover {
     display: block;
     margin-bottom: 0.3rem;
 }
+/* chatAI.css */
+
+button.btn-danger {
+    background-color: #BFA315;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    color: white;
+    margin-left: 1rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+button.btn-danger:hover {
+    background-color: #d45a22; 
+}
+
 
 @media (max-width: 600px) {
     .chat-ai-container {
